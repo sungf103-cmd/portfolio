@@ -1,0 +1,15 @@
+# Netlify 설정: 빌드 과정 없이 이 폴더를 그대로 배포합니다.
+[build]
+  publish = "."
+
+# 글꼴·이미지 같은 정적 파일은 브라우저가 잠시 보관하도록 합니다.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

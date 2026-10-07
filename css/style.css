@@ -204,6 +204,10 @@ img{max-width:100%}
 .term-body{white-space:normal}
 .t-line{white-space:nowrap}
 .t-gap{margin-top:12px}
+/* 아직 글을 넣지 않은 자리 */
+.slot{border:1px dashed var(--line);border-radius:10px;background:var(--sunk);opacity:.7}
+.slot-h1{height:clamp(84px,11vw,118px);margin:12px 0 18px}
+.slot-lede{height:84px;max-width:34em;margin:0 0 24px}
 
 /* ---------- cards ---------- */
 .flagship .body{display:flex;flex-direction:column;gap:12px}

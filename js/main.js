@@ -134,11 +134,6 @@
       }).join("") + "</div>";
   }
 
-  function themeBtn() {
-    return '<button type="button" class="icon-btn" id="theme-btn" aria-label="' + esc(T.ui.theme) + '" title="' + esc(T.ui.theme) + '">' +
-      '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 0 18V3z"/><circle cx="12" cy="12" r="8.25" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>';
-  }
-
   function avatar() {
     /* 사진 틀은 항상 보입니다. js/site.js 의 photo 를 채우면 틀 안에 사진이 들어갑니다. */
     var name = myName();
@@ -189,7 +184,7 @@
       '<a href="#journey">' + esc(U.nav.journey) + "</a>" +
       '<a href="#projects">' + esc(U.nav.projects) + "</a>" +
       '<a href="#contact">' + esc(U.nav.contact) + "</a></nav>" +
-      '<div class="controls">' + langSwitch() + themeBtn() + "</div>" +
+      '<div class="controls">' + langSwitch() + "</div>" +
       "</div></header>";
 
     h += '<main class="wrap" id="top">';
@@ -199,8 +194,11 @@
       '<div class="who">' + avatar() + "<div>" +
       (name ? '<div class="name">' + esc(name) + "</div>" : "") +
       '<div class="eyebrow">' + esc(P.eyebrow) + "</div></div></div>" +
-      "<h1>" + esc(P.h1a) + "<em>" + esc(P.h1em) + "</em>" + esc(P.h1b) + "</h1>" +
-      '<p class="lede">' + esc(P.lede) + "</p>" +
+      /* 문구를 비워 두면 자리만 잡힌 빈 틀로 보입니다. js/lang/*.js 의 h1a·h1em·h1b·lede 를 채우면 글이 들어갑니다. */
+      ((P.h1a || P.h1em || P.h1b)
+        ? "<h1>" + esc(P.h1a) + "<em>" + esc(P.h1em) + "</em>" + esc(P.h1b) + "</h1>"
+        : '<div class="slot slot-h1" aria-hidden="true"></div>') +
+      (P.lede ? '<p class="lede">' + esc(P.lede) + "</p>" : '<div class="slot slot-lede" aria-hidden="true"></div>') +
       '<div class="facts">' + (P.facts || []).map(function (f) { return '<span class="fact">' + esc(f) + "</span>"; }).join("") + "</div>" +
       '<div class="cta"><a class="btn primary" href="#projects">' + esc(U.viewProjects) + '</a><a class="btn ghost" href="#contact">' + esc(U.nav.contact) + "</a></div></div>";
 
@@ -225,7 +223,7 @@
     if (T.timeline && T.timeline.length) {
       h += '<section id="journey"><div class="sec-head"><div><div class="eyebrow">Journey</div><h2>' + esc(U.journeyTitle) + '</h2></div></div><ol class="timeline">' +
         T.timeline.map(function (t) {
-          return '<li><div class="tl-date">' + esc(t.date) + '</div><div><div class="tl-title">' + esc(t.title) + "</div>" +
+          return '<li><div class="tl-date">' + esc(t.date) + '</div><div>' + (t.title ? '<div class="tl-title">' + esc(t.title) + "</div>" : "") +
             (t.desc ? '<div class="tl-desc">' + esc(t.desc) + "</div>" : "") + "</div></li>";
         }).join("") + "</ol></section>";
     }
@@ -238,7 +236,7 @@
 
     /* contact */
     var rows = contactRows();
-    h += '<section id="contact"><div class="contact' + (rows ? "" : " solo") + '"><div><div class="eyebrow">Contact</div><h2>' + esc(P.contactTitle) + "</h2>" +
+    h += '<section id="contact"><div class="contact' + (rows ? "" : " solo") + '"><div><div class="eyebrow">Contact</div>' + (P.contactTitle ? "<h2>" + esc(P.contactTitle) + "</h2>" : "") +
       (P.contactText ? '<p class="contact-text">' + esc(P.contactText) + "</p>" : "") + "</div>" +
       (rows ? '<div class="clist">' + rows + "</div>" : "") + "</div></section>";
 
@@ -323,7 +321,7 @@
   dlg.addEventListener("close", function () { openId = null; setHash(""); });
   dlg.addEventListener("click", function (e) { if (e.target === dlg) closeDetail(); });
 
-  /* ---------- language / theme ---------- */
+  /* ---------- language ---------- */
   function loadFont(code) {
     if (!FONTS[code] || document.getElementById("font-" + code)) return;
     var l = document.createElement("link");
@@ -362,14 +360,6 @@
     }
   }
 
-  function toggleTheme() {
-    var cur = root.getAttribute("data-theme") ||
-      (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    var next = cur === "dark" ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    store("pf-theme", next);
-  }
-
   /* ---------- events ---------- */
   document.addEventListener("click", function (e) {
     var t = e.target.closest && e.target.closest("button");
@@ -378,7 +368,6 @@
     if (d.open) { openDetail(d.open); return; }
     if (d.lang) { setLang(d.lang); var b = document.querySelector('.langs [data-lang="' + d.lang + '"]'); if (b) b.focus(); return; }
     if (t.id === "d-close") { closeDetail(); return; }
-    if (t.id === "theme-btn") { toggleTheme(); return; }
     if (d.copy) {
       var done = function () { t.textContent = T.ui.copied; setTimeout(function () { t.textContent = T.ui.copy; }, 1600); };
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(d.copy).then(done, function () {});

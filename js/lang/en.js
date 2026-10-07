@@ -32,14 +32,14 @@ window.I18N.en = {
   },
   "profile": {
     "eyebrow": "Backend · Data Engineering",
-    "h1a": "A backend developer who builds ",
-    "h1em": "the whole data flow",
-    "h1b": ", from ingestion to deployment",
-    "lede": "From external API ingestion, incremental loading and crontab automation to Spring back ends and Kubernetes deployment. I carried six course and personal projects through to the end, including the planning docs, design specs and troubleshooting notes.",
+    "h1a": "",
+    "h1em": "",
+    "h1b": "",
+    "lede": "",
     "facts": ["6 projects", "Excellence Award", "Incremental UPSERT loading", "Kubernetes self-healing"],
-    "skillsNote": "Only tools I have actually used in a project.",
+    "skillsNote": "",
     "projectsNote": "Open “Read more” on a card for the architecture and how each problem was solved.",
-    "contactTitle": "For projects or job opportunities, feel free to email me",
+    "contactTitle": "",
     "contactText": ""
   },
   "log": [
@@ -58,10 +58,10 @@ window.I18N.en = {
     { "name": "AI", "tags": ["Ollama (local LLM)", "Prompt design", "GPT · TTS pipeline"], "where": "Anilog recommendations · Won Story (team)" }
   ],
   "timeline": [
-    {"date": "2022", "title": "Entered Soongeui Women's College", "desc": ""},
-    {"date": "2024.03", "title": "Transferred to Hongik University", "desc": "Graduated Feb 2026"},
-    {"date": "2025.05 – 11", "title": "Won Story, academic conference project", "desc": "Presented at the 2025 conference of the International Society for Artificial Intelligence and received the Excellence Award"},
-    {"date": "2026.03 – now", "title": "Korea Polytechnics, Smart Finance program", "desc": ""}
+    {"date": "2022", "title": "", "desc": ""},
+    {"date": "2024.03", "title": "", "desc": ""},
+    {"date": "2025.05 – 11", "title": "", "desc": ""},
+    {"date": "2026.03 – now", "title": "", "desc": ""}
   ],
   "projects": [
     {
@@ -108,7 +108,7 @@ window.I18N.en = {
         "Concurrent scans are not handled yet (transactions and locks).",
         "Expired unused tokens keep piling up, so a real service would need a periodic cleanup job."
       ],
-      "learned": "I learned that one small check can decide how far the whole system can be trusted. I now ask “how could this be bypassed?” before I build a feature."
+      "learned": ""
     },
     {
       "id": "krx",
@@ -155,7 +155,7 @@ window.I18N.en = {
         "Running the scheduler on an always-on server instead of WSL would prevent most gaps.",
         "I plan to add a web view with a KOSPI/KOSDAQ filter and trend charts."
       ],
-      "learned": "I learned that the core of automation is “the same result whenever it runs”, more than “it runs every day”. Once idempotency (UPSERT) and the incremental rule were settled, the scheduler was the easy part."
+      "learned": ""
     },
     {
       "id": "anilog",
@@ -216,7 +216,7 @@ window.I18N.en = {
         "Four servers (Ollama, FastAPI, Spring, Node) must be started in order; containers would make this a single step.",
         "Because the LLM runs locally, an answer takes 5 to 15 seconds."
       ],
-      "learned": "I learned that an LLM can only be plugged into a service once you specify the format of the answer, not just its content, and that something that works locally can break on a server because of a version difference."
+      "learned": ""
     },
     {
       "id": "k8s",
@@ -277,7 +277,7 @@ window.I18N.en = {
         "hostPath ties data to one node; production needs network storage such as NFS.",
         "A Secret is only base64-encoded by default, so etcd encryption or an external secret manager is needed."
       ],
-      "learned": "The readinessProbe showed me that “Running” means the process has started, not that it is ready for requests. I also learned that using a tool while knowing its limits is part of design."
+      "learned": ""
     },
     {
       "id": "wonstory",
@@ -308,7 +308,7 @@ window.I18N.en = {
       "next": [
         "The story pipeline and data storage were my teammates' work; my contribution was the screen design."
       ],
-      "learned": "I learned to look at the screen and the data flow together from the user's point of view, which led me to build the back end myself in the gym project that followed."
+      "learned": ""
     },
     {
       "id": "grade",
@@ -339,7 +339,7 @@ window.I18N.en = {
       "next": [
         "Only the database is containerised for now; the back end and front end run locally. Containerising everything would start it all with one command."
       ],
-      "learned": "Applying normalisation and foreign keys from my database course to real CRUD showed me why data integrity should be enforced by the database, not the application."
+      "learned": ""
     }
   ]
 };

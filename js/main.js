@@ -239,7 +239,7 @@
     /* contact */
     var rows = contactRows();
     h += '<section id="contact"><div class="contact' + (rows ? "" : " solo") + '"><div><div class="eyebrow">Contact</div><h2>' + esc(P.contactTitle) + "</h2>" +
-      '<p class="contact-text">' + esc(P.contactText) + "</p></div>" +
+      (P.contactText ? '<p class="contact-text">' + esc(P.contactText) + "</p>" : "") + "</div>" +
       (rows ? '<div class="clist">' + rows + "</div>" : "") + "</div></section>";
 
     h += "<footer><span>© " + new Date().getFullYear() + (name ? " " + esc(name) : "") + '</span><a href="#top">' + esc(U.toTop) + ' <span aria-hidden="true">↑</span></a></footer></main>';

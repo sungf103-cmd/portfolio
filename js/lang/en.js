@@ -39,8 +39,8 @@ window.I18N.en = {
     "facts": ["6 projects", "Excellence Award", "Incremental UPSERT loading", "Kubernetes self-healing"],
     "skillsNote": "Only tools I have actually used in a project.",
     "projectsNote": "Open “Read more” on a card for the architecture and how each problem was solved.",
-    "contactTitle": "I want to build services where data flows end to end",
-    "contactText": "When a result looks wrong, I question the criteria before the code, and I write down every problem I run into."
+    "contactTitle": "For projects or job opportunities, feel free to email me",
+    "contactText": ""
   },
   "log": [
     { "d": "2025-11", "n": "WonStory", "t": "Excellence Award" },
